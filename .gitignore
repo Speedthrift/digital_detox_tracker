@@ -1,0 +1,30 @@
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+#others
+migrations/
+.venv
+z_misc/
+
+#images
+static/tracker/images/graphs/
+
+#old code
+old_code.py
+
+#celerty stuff
+celery*
+
+#vsc stuff
+*.code-workspace
+
+#json
+*.json
