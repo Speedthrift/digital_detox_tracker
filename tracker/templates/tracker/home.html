@@ -1,0 +1,10 @@
+{% extends "base_template.html" %}
+{%block title%}
+home
+{%endblock%}
+{%block content%}
+home page <br/>
+<a href="{% url 'tracker:disp' %}"><button class="button">Show usage</button></a><br/>
+<a href="{% url 'tracker:dispgoal' %}"><button class="button">Show goals</button></a><br/>
+<a href="{% url 'tracker:disp_month' %}"><button class="button">Show trend</button></a><br/>
+{% endblock %}

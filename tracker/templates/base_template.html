@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AppSite{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tracker/base_style.css' %}">
+    <link rel="stylesheet" href="{% static 'tracker/dark_theme.css' %}">
+    {% block headcontent %}{% endblock %}
+</head>
+<body>
+  <header>
+    <nav>
+      <div id="header" class="header">
+        <div class="header-element left">
+          <a href="{% url 'tracker:home' %}"><button class="link-button">Home</button></a>
+        </div>
+        <div class="header-element right">
+          <form method="post" action="{% url 'tracker:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="link-button" id="logout-btn">Logout</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <div class="content-body">
+    {% block content %}
+    {% endblock %}
+  </div>
+  
+  {% block js %}
+  {% comment %} <script src="{% static 'garage/js/script.js' %}"></script> {% endcomment %}
+  {% endblock %}
+</body>
+</html>

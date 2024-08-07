@@ -1,0 +1,39 @@
+{% extends "base_template.html" %}
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        img{
+            height: 70vh;
+            width: 50vw;
+        }
+    </style>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" >
+</head>
+<body> {% endcomment %}
+    {% block title %}Distance Graph{% endblock %}
+    {% block content %}
+    {% if flag %} 
+    {% load static %}
+    <img src="{% static 'tracker/images/graphs/app_output.jpg' %}">
+    <b>Usage for {{appname}}</b>    
+    {% else %}
+    <b>No records found!</b><br/>
+    {% comment %} <a href="{% url 'garage:AddOdo' user_name=user_name vehicle_id=vehicle_id %}"><button>Add Odometer Record</button></a> {% endcomment %}
+    {% endif %}
+
+
+    <a href="{% url 'tracker:appwise' %}"><button class="button">View for other apps</button></a><br/>
+    <a href="{% url 'tracker:disp_month' %}"><button class="button">Back</button></a><br/>
+    {% comment %} <a href="{% url 'tracker:home' %}"><button class="button">Home</button></a><br/> {% endcomment %}
+
+    <br/>    <br/>
+    {% comment %} <a href="{% url 'garage:OdoRecord' user_name=user_name vehicle_id=vehicle_id %}"><button>Back</button></a> {% endcomment %}
+    {% comment %} <a href="{% url 'garage:DataList' user_name=user_name vehicle_id=vehicle_id %}"><button>Logs</button></a> {% endcomment %}
+    {% comment %} <a href="{% url 'garage:vehicles' %}"><button>Home</button></a> {% endcomment %}
+    {% comment %} {% endif %}  {% endcomment %}
+    {%endblock%}

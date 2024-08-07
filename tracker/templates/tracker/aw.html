@@ -1,0 +1,30 @@
+{% extends "base_template.html" %}
+{% block title %}Deleting Goals{% endblock %}
+{% block content %}
+
+    {% comment %} TODO better way of managing cases {% endcomment %}
+    {% if recs %}
+    {% comment %}     <b>There are no goals present! Try adding a new goal below or go back</b>
+        <a href="{% url 'tracker:addgoal' %}"><button>Add goal</button></a> {% endcomment %}
+    {% comment %} {% else %} {% endcomment %}
+        {% comment %} {% if flag %}
+        <b>There are no fuel records on the entered date, please try again</b>
+        {% endif %} {% endcomment %}
+        <form action="{% url 'tracker:appwisesuc'%}" method="post">
+            {% csrf_token %}
+            <label for="appname_to_view">Select app name:</label><br/>
+            <!-- <input type="date" id="frectd" name="frectd" required><br/> -->
+            <!-- Maybe add the record here as a confirm popup -->
+            <select name="appname_to_view" id="appname_to_view" required>
+                <option value="">--select--</option>
+            {% for fr in names %}
+            <option value = {{ fr }} > {{ fr }} </option>
+            {% endfor %}
+            </select><br/><br/>
+            <input type="submit" value="View">
+            <!-- Add maybe a popup warning here on clicking button-->
+        </form>
+    {% endif %}
+    <a href="{% url 'tracker:disp_month' %}"><button>Back</button></a>
+    {% comment %} <a href="{% url 'tracker:vehicles' %}"><button>Main Menu</button></a> {% endcomment %}
+    {%endblock%}    

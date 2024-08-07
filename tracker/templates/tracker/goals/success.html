@@ -1,0 +1,47 @@
+{% extends "base_template.html" %}
+{% block title %}Success!{% endblock %}
+{% block content %}
+
+    {% if added %}
+    New goal for {{ appname }} added successfully!<br/>
+    <a href="{% url 'tracker:addgoal' %}"><button class="button">Add another goal</button></a>
+    
+    {% elif updated %}
+    Goal for {{ appname }} updated successfully!<br/>
+    <a href="{% url 'tracker:editgoal' %}"><button class="button">Update another goal</button></a>
+{% comment %}     
+    {%elif choice1 %}
+    <b> choice 1 </b>
+    
+    {%elif choice2 %}
+    <b> choice 2 </b>
+    
+    {%elif choice3 %}
+    <b> choice 3 </b> {% endcomment %}
+
+    {% elif deleted %}
+    Goal for {{ appname }} deleted successfully!<br/>
+    <a href="{% url 'tracker:delgoal' %}"><button class="button">Delete another goal</button></a>
+
+    {% comment %} {% else %}
+    Fuel record dated {{ dt }} for {{ vehname }} changed successfully!<br/>  {% endcomment %}
+    {% comment %} to be reomved later {% endcomment %}
+    {% comment %} {{ e }}  {% endcomment %}
+    {% comment %} {{choice1}}{{choice2}}{{choice3}} {% endcomment %}
+    {% comment %} <a href="{% url 'garage:ModFuel' user_name=user_name vehicle_id=vehicle_id %}"><button>Modify another fuel record</button></a>
+    {{e}}
+    {% endif %} {% endcomment %}
+    {% comment %} {%else%}
+    {{e}}
+    <br/>
+    <br/>
+    <br/>
+    ssssss
+    {{h}}
+    {{m}}
+    {{s}} {% endcomment %}
+    <!-- Click the buttons below to go back to main menu<br/> -->
+     {% endif %}
+    <a href="{% url 'tracker:dispgoal' %}"><button>Show goals</button></a>
+    {% comment %} <a href="{% url 'garage:vehicles' %}"><button>Main Menu</button></a> {% endcomment %}
+{%endblock%}

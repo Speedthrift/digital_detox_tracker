@@ -1,0 +1,51 @@
+{% extends "base_template.html" %}
+{% block title %}Adding Fuel Record{% endblock %}
+{% comment %} Default choice, the first time display {% endcomment %}
+{% block content %}
+
+    {% if flag %}
+    <b>A goal for the app already exists!</b>
+    {% endif %}
+    <form action = "{% url 'tracker:addgoalsuc' %}" method="post">
+        {% csrf_token %}
+        {% comment %} Date of record to add {% endcomment %}
+        <label for="new_goal_name">Enter name of app:</label><br/>
+        <input type="text" id="new_goal_name" name="new_goal_name" required><br/>
+        {% comment %} Fuel quantity on the day {% endcomment %}
+        <label for="hours">Enter hours:</label><br/>
+        <input type="text" id="hours" name="hours" required value=0><br/>
+        <label for="minutes">Enter minutes:</label><br/>
+        <input type="text" id="minutes" name="minutes" required value=0><br/>
+        <label for="seconds">Enter seconds:</label><br/>
+        <input type="text" id="seconds" name="seconds" required value=0><br/>
+        <input  type="submit" value="Add goal">
+    </form>
+
+    {% comment %} {% elif rec_exists %} 
+    <b> A record on the given date already exists!</b><br/>
+    What do you wish to do?
+    <form action = "{% url 'garage:AddFuelSuc' user_name=user_name vehicle_id=vehicle_id %}" method="post">
+        {% csrf_token %}
+        
+        <input type="checkbox" id="choice1" name="choice1" >
+        <label for="choice1">Add fuel quantity to the existing record</label><br/>
+        <input type="checkbox" id="choice2" name="choice2" >
+        <label for="choice2">Change date of the current record</label><br/>
+        <input type="checkbox" id="choice3" name="choice3" >
+        <label for="choice3">Overwrite value of old fuel record</label><br/>
+        <input  type="submit" value="Confirm choice">
+    </form>
+
+    {% comment %} {% elif change_date %} {% endcomment %}
+    {% comment %} <form action = "{% url 'garage:AddFuelSuc' user_name=user_name vehicle_id=vehicle_id %}" method="post">
+        {% csrf_token %}
+        <label for="frecdate">Enter new date:</label><br/>
+        <input type="date" id="frecdate" name="frecdate" required><br/>
+        <label for="frecqt">Fuel quantity:</label><br/>
+        <input type="text" id="frecqt" name="frecqt" value={{fuelq}} disabled><br/> {% comment %} maybe remove disabled option here (?) {% endcomment %}
+        {% comment %} <input  type="submit" value="Add record">
+    </form> {% endcomment %} 
+    {% comment %} {% endif %} {% endcomment %}
+    <a href="{% url 'tracker:dispgoal' %}"><button>Back</button></a>
+    {% comment %} <a href="{% url 'tracker:home' %}"><button>Home</button></a> {% endcomment %}
+{%endblock%}

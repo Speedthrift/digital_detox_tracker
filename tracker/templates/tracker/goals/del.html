@@ -1,0 +1,30 @@
+{% extends "base_template.html" %}
+{% block title %}Deleting Goals{% endblock %}
+{% block content %}
+
+    {% comment %} TODO better way of managing cases {% endcomment %}
+    {% if flag_no_recs %}
+        <b>There are no goals present! Try adding a new goal below or go back</b>
+        <a href="{% url 'tracker:addgoal' %}"><button>Add goal</button></a>
+    {% else %}
+        {% if flag %}
+        <b>There are no fuel records on the entered date, please try again</b>
+        {% endif %}
+        <form action="{% url 'tracker:delgoalsuc'%}" method="post">
+            {% csrf_token %}
+            <label for="appname_to_del">Enter record date:</label><br/>
+            <!-- <input type="date" id="frectd" name="frectd" required><br/> -->
+            <!-- Maybe add the record here as a confirm popup -->
+            <select name="appname_to_del" id="appname_to_del" required>
+                <option value="">--select--</option>
+            {% for fr in names %}
+            <option value = {{ fr }} > {{ fr }} </option>
+            {% endfor %}
+            </select><br/><br/>
+            <input type="submit" value="Delete goal" onClick='return confirmDel()'>
+            <!-- Add maybe a popup warning here on clicking button-->
+        </form>
+    {% endif %}
+    <a href="{% url 'tracker:dispgoal' %}"><button>Back</button></a>
+    {% comment %} <a href="{% url 'tracker:vehicles' %}"><button>Main Menu</button></a> {% endcomment %}
+    {%endblock%}    

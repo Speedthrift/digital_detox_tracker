@@ -1,0 +1,69 @@
+{% extends "base_template.html" %}
+{%block title%}
+home
+{%endblock%}
+{% block headcontent %}    <style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+    th {
+        background-color: grey;
+    }
+
+    th, td, body
+    {
+        font-family: "Quicksand Medium";
+    }
+
+    tr {
+        text-align: center;
+    }
+</style>{%endblock%}
+{%block content%}
+
+{% comment %} {{ jsondata }} {% endcomment %}
+
+<br/>
+{% comment %} <a href="{% url 'tracker:home' %}"><button class="button">Home</button></a><br/> {% endcomment %}
+{% comment %} {{ res }} {% endcomment %}
+{% if usergoals %}
+    {% comment %} {% load static %} {% endcomment %}
+    {% comment %} <img src="{% static 'tracker/images/graphs/pi_output.jpg' %}">    {% endcomment %}
+    {% comment %} <br/>At a glance...<br/> {% endcomment %}
+    
+<table>
+    <tr>
+    {% comment %} <th>Site</th> {% endcomment %}
+    <th>App</th>
+    <th>Time</th>
+    {% comment %} <th>Date</th> {% endcomment %}
+    </tr>
+{% for ud in usergoals %}
+    <tr>
+        {% comment %} <td><!-- <a href="/garage/{{ fuelrec.id }}/">-->{{ ud.sitename }}</td>            {% endcomment %}
+        <td><!-- <a href="/garage/{{ fuelrec.id }}/">-->{{ ud.appname }} </td>
+        <td><!-- <a href="/garage/{{ fuelrec.id }}/">-->{{ ud.timegoal }}</td>
+        {% comment %} <td><!-- <a href="/garage/{{ fuelrec.id }}/">-->{{ ud.ondate }}</td> {% endcomment %}
+    </tr>
+{% endfor %}
+</table>
+{% comment %} {% if flag %}  {% endcomment %}
+    
+    {% comment %} {% else %} {% endcomment %}
+    {% comment %} <b>No records found!</b><br/> {% endcomment %}
+    {% comment %} <a href="{% url 'garage:AddOdo' user_name=user_name vehicle_id=vehicle_id %}"><button>Add Odometer Record</button></a> {% endcomment %}
+    {% comment %} {% endif %} {% endcomment %}
+
+
+
+{% else %}
+No data available!
+
+{%endif %}
+{% comment %} <a href="{% url 'tracker:analysis' %}"><button class="button">Graph</button></a><br/> {% endcomment %}
+<a href="{% url 'tracker:addgoal' %}"><button class="button">Add Goal</button></a> 
+{% comment %} <a href="{% url 'tracker:editgoal' %}"><button class="button">Edit Goal</button></a>  {% endcomment %}
+<a href="{% url 'tracker:delgoal' %}"><button class="button">Delete Goal</button></a> 
+{% endblock %}
